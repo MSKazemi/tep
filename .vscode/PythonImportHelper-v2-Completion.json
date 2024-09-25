@@ -1,0 +1,285 @@
+[
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "paho.mqtt.client",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "paho.mqtt.client",
+        "description": "paho.mqtt.client",
+        "detail": "paho.mqtt.client",
+        "documentation": {}
+    },
+    {
+        "label": "examon_collector",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "examon_collector",
+        "description": "examon_collector",
+        "detail": "examon_collector",
+        "documentation": {}
+    },
+    {
+        "label": "submer_collector",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "submer_collector",
+        "description": "submer_collector",
+        "detail": "submer_collector",
+        "documentation": {}
+    },
+    {
+        "label": "examon_publisher",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "examon_publisher",
+        "description": "examon_publisher",
+        "detail": "examon_publisher",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "generate_dummy_errors",
+        "kind": 2,
+        "importPath": "data_gen",
+        "description": "data_gen",
+        "peekOfCode": "def generate_dummy_errors():\n    return [\n        {\n            \"idFailure\": random.randint(1000, 9999),\n            \"startTime\": (datetime.now() - timedelta(hours=random.randint(1, 24))).strftime('%Y-%m-%dT%H:%M:%S.000Z'),\n            \"failureType\": random.choice([\"HighWT\", \"LowCF\"]),\n            \"description\": random.choice([\n                \"High Input Water Temperature\",\n                \"Low Coolant Flow\",\n                \"Pump Failure\",",
+        "detail": "data_gen",
+        "documentation": {}
+    },
+    {
+        "label": "generate_dummy_warnings",
+        "kind": 2,
+        "importPath": "data_gen",
+        "description": "data_gen",
+        "peekOfCode": "def generate_dummy_warnings():\n    return [\n        {\n            \"idWarning\": random.randint(1000, 9999),\n            \"startTime\": (datetime.now() - timedelta(hours=random.randint(1, 24))).strftime('%Y-%m-%dT%H:%M:%S.000Z'),\n            \"warningType\": random.choice([\"LowCF\", \"HighWT\"]),\n            \"description\": random.choice([\n                \"Low Coolant Flow\",\n                \"High Water Temperature Warning\"\n            ])",
+        "detail": "data_gen",
+        "documentation": {}
+    },
+    {
+        "label": "generate_dummy_fixed_errors",
+        "kind": 2,
+        "importPath": "data_gen",
+        "description": "data_gen",
+        "peekOfCode": "def generate_dummy_fixed_errors():\n    start_time = (datetime.now() - timedelta(hours=random.randint(1, 24))).strftime('%Y-%m-%dT%H:%M:%S.000Z')\n    end_time = (datetime.now() - timedelta(hours=random.randint(0, 1))).strftime('%Y-%m-%dT%H:%M:%S.000Z')\n    return [\n        {\n            \"idFailure\": random.randint(1000, 9999),\n            \"startTime\": start_time,\n            \"failureType\": \"HighWT\",\n            \"description\": \"High Input Water Temperature\",\n            \"endTime\": end_time",
+        "detail": "data_gen",
+        "documentation": {}
+    },
+    {
+        "label": "generate_dummy_fixed_warnings",
+        "kind": 2,
+        "importPath": "data_gen",
+        "description": "data_gen",
+        "peekOfCode": "def generate_dummy_fixed_warnings():\n    start_time = (datetime.now() - timedelta(hours=random.randint(1, 24))).strftime('%Y-%m-%dT%H:%M:%S.000Z')\n    end_time = (datetime.now() - timedelta(hours=random.randint(0, 1))).strftime('%Y-%m-%dT%H:%M:%S.000Z')\n    return [\n        {\n            \"idWarning\": random.randint(1000, 9999),\n            \"startTime\": start_time,\n            \"warningType\": \"LowCF\",\n            \"description\": \"Low Coolant Flow\",\n            \"endTime\": end_time",
+        "detail": "data_gen",
+        "documentation": {}
+    },
+    {
+        "label": "generate_live_measurements",
+        "kind": 2,
+        "importPath": "data_gen",
+        "description": "data_gen",
+        "peekOfCode": "def generate_live_measurements():\n    live_data = {\n        \"meta\": [\"Dummy data generated for testing purposes\"],\n        \"data\": {\n            \"temperature\": round(random.uniform(20.0, 50.0), 2),\n            \"cti\": round(random.uniform(30.0, 55.0), 2),  # Coolant temperature inlet\n            \"cto\": round(random.uniform(30.0, 55.0), 2),  # Coolant temperature outlet\n            \"cf\": round(random.uniform(1.0, 10.0), 2),  # Coolant flow\n            \"wti\": round(random.uniform(20.0, 40.0), 2),  # Water temperature inlet\n            \"wto\": round(random.uniform(25.0, 45.0), 2),  # Water temperature outlet",
+        "detail": "data_gen",
+        "documentation": {}
+    },
+    {
+        "label": "generate_average_measurements",
+        "kind": 2,
+        "importPath": "data_gen",
+        "description": "data_gen",
+        "peekOfCode": "def generate_average_measurements():\n    dummy_data = {\n        \"meta\": [\n            \"Dummy data generated for testing purposes\"\n        ],\n        \"data\": [\n            {\n                \"timestamp\": datetime.now().strftime('%Y-%m-%dT%H:%M:%S.000Z'),\n                \"temperature\": round(random.uniform(20.0, 50.0), 2),\n                \"consumption\": round(random.uniform(500, 1000), 2),",
+        "detail": "data_gen",
+        "documentation": {}
+    },
+    {
+        "label": "generate_configuration_data",
+        "kind": 2,
+        "importPath": "data_gen",
+        "description": "data_gen",
+        "peekOfCode": "def generate_configuration_data():\n    config_data = {\n        \"data\": {\n            \"values\": {\n                \"ctAlarm\": random.randint(30, 70),\n                \"wtAlarm\": random.randint(30, 70),\n                \"wfAlarm\": random.randint(30, 70),\n                \"timezone\": \"UTC\",\n            },\n            \"limits\": {",
+        "detail": "data_gen",
+        "documentation": {}
+    },
+    {
+        "label": "get_live_measurements",
+        "kind": 2,
+        "importPath": "data_gen",
+        "description": "data_gen",
+        "peekOfCode": "def get_live_measurements():\n    return generate_live_measurements()\n# API Endpoint to fetch average measurements\n@app.get(\"/average\")\ndef get_average_measurements(period: int = 10):\n    return generate_average_measurements()\n# API Endpoint to fetch current configuration\n@app.get(\"/podConfiguration\")\ndef get_configuration():\n    return generate_configuration_data()",
+        "detail": "data_gen",
+        "documentation": {}
+    },
+    {
+        "label": "get_average_measurements",
+        "kind": 2,
+        "importPath": "data_gen",
+        "description": "data_gen",
+        "peekOfCode": "def get_average_measurements(period: int = 10):\n    return generate_average_measurements()\n# API Endpoint to fetch current configuration\n@app.get(\"/podConfiguration\")\ndef get_configuration():\n    return generate_configuration_data()\n# Run the server using Uvicorn\nif __name__ == \"__main__\":\n    import uvicorn\n    uvicorn.run(app, host=\"127.0.0.1\", port=8000)",
+        "detail": "data_gen",
+        "documentation": {}
+    },
+    {
+        "label": "get_configuration",
+        "kind": 2,
+        "importPath": "data_gen",
+        "description": "data_gen",
+        "peekOfCode": "def get_configuration():\n    return generate_configuration_data()\n# Run the server using Uvicorn\nif __name__ == \"__main__\":\n    import uvicorn\n    uvicorn.run(app, host=\"127.0.0.1\", port=8000)",
+        "detail": "data_gen",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "data_gen",
+        "description": "data_gen",
+        "peekOfCode": "app = FastAPI()\n# Function to generate a list of dummy errors\ndef generate_dummy_errors():\n    return [\n        {\n            \"idFailure\": random.randint(1000, 9999),\n            \"startTime\": (datetime.now() - timedelta(hours=random.randint(1, 24))).strftime('%Y-%m-%dT%H:%M:%S.000Z'),\n            \"failureType\": random.choice([\"HighWT\", \"LowCF\"]),\n            \"description\": random.choice([\n                \"High Input Water Temperature\",",
+        "detail": "data_gen",
+        "documentation": {}
+    },
+    {
+        "label": "json_to_examon_data_model",
+        "kind": 2,
+        "importPath": "examon_collector",
+        "description": "examon_collector",
+        "peekOfCode": "def json_to_examon_data_model(data):\n    # Get the current timestamp in ISO format\n    timestamp = datetime.utcnow().isoformat() + 'Z'\n    # Keys to exclude from the initial processing\n    exclude_keys = {\"fixedWarnings\", \"fixedErrors\", \"errors\", \"warnings\"}\n    # Iterate over the data dictionary and process general keys\n    for key, value in data['data'].items():\n        if key not in exclude_keys:\n            line = f'org/tep/submer/{key}/topic_end {value}; {timestamp}'\n            yield line",
+        "detail": "examon_collector",
+        "documentation": {}
+    },
+    {
+        "label": "parse_line",
+        "kind": 2,
+        "importPath": "examon_collector",
+        "description": "examon_collector",
+        "peekOfCode": "def parse_line(line):\n    \"\"\"\n    Parses a line in the format:\n    'org/tep/submer/<path> <value>; <timestamp>'\n    and returns the topic and message separately.\n    \"\"\"\n    try:\n        # Split the line at the first space\n        topic_part, rest = line.split('/topic_end', 1)\n        # The message includes the value and timestamp",
+        "detail": "examon_collector",
+        "documentation": {}
+    },
+    {
+        "label": "json_data",
+        "kind": 5,
+        "importPath": "examon_collector",
+        "description": "examon_collector",
+        "peekOfCode": "json_data = '''\n{\n  \"meta\": [\n    \"Dummy data generated for testing purposes\"\n  ],\n  \"data\": {\n    \"temperature\": 32.05,\n    \"cti\": 51.15,\n    \"cto\": 53.78,\n    \"cf\": 4.57,",
+        "detail": "examon_collector",
+        "documentation": {}
+    },
+    {
+        "label": "publish_to_examon",
+        "kind": 2,
+        "importPath": "examon_publisher",
+        "description": "examon_publisher",
+        "peekOfCode": "def publish_to_examon(live_data):\n    # MQTT broker settings\n    MQTT_BROKER = 'test.mosquitto.org'  # e.g., 'localhost' or 'test.mosquitto.org'\n    MQTT_PORT = 1883\n    MQTT_USERNAME = 'your_username'  # if authentication is required\n    MQTT_PASSWORD = 'your_password'  # if authentication is required\n    # Create an MQTT client instance\n    client = mqtt.Client()\n    # Set username and password if required\n    # client.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)",
+        "detail": "examon_publisher",
+        "documentation": {}
+    },
+    {
+        "label": "collect_live_measurements",
+        "kind": 2,
+        "importPath": "submer_collector",
+        "description": "submer_collector",
+        "peekOfCode": "def collect_live_measurements():\n    url = \"http://127.0.0.1:8000/realTime\"\n    try:\n        response = requests.get(url)\n        response.raise_for_status()\n        data = response.json()\n        print(\"Live Measurements:\")\n        print(data)\n        return data\n    except requests.exceptions.RequestException as e:",
+        "detail": "submer_collector",
+        "documentation": {}
+    },
+    {
+        "label": "collect_average_measurements",
+        "kind": 2,
+        "importPath": "submer_collector",
+        "description": "submer_collector",
+        "peekOfCode": "def collect_average_measurements(period=10):\n    url = f\"http://127.0.0.1:8000/average?period={period}\"\n    try:\n        response = requests.get(url)\n        response.raise_for_status()\n        data = response.json()\n        print(\"\\nAverage Measurements:\")\n        print(data)\n        return data\n    except requests.exceptions.RequestException as e:",
+        "detail": "submer_collector",
+        "documentation": {}
+    },
+    {
+        "label": "collect_configuration",
+        "kind": 2,
+        "importPath": "submer_collector",
+        "description": "submer_collector",
+        "peekOfCode": "def collect_configuration():\n    url = \"http://127.0.0.1:8000/podConfiguration\"\n    try:\n        response = requests.get(url)\n        response.raise_for_status()\n        data = response.json()\n        print(\"\\nConfiguration Data:\")\n        print(data)\n        return data\n    except requests.exceptions.RequestException as e:",
+        "detail": "submer_collector",
+        "documentation": {}
+    }
+]
