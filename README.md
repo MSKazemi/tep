@@ -41,9 +41,6 @@ The script will continuously collect data from the Submer API and publish it to 
 ```
 .
 ├── __init__.py
-├── __pycache__/
-├── .vscode/
-│   └── PythonImportHelper-v2-Completion.json
 ├── data_gen.py
 ├── examon_collector.py
 ├── examon_publisher.py
