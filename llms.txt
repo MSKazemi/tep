@@ -1,0 +1,19 @@
+# TEP — Submer to Examon Telemetry Bridge
+
+> A small Python service that collects immersion-cooling telemetry from a Submer SmartPod on-prem RESTful API and publishes it to the Examon monitoring system over MQTT.
+
+TEP polls a Submer SmartPod (an immersion/liquid cooling unit for data centers and HPC) for live, average, and configuration metrics, transforms the JSON into the Examon data model as hierarchical MQTT topics (`org/tep/submer/...`), and publishes them to an MQTT broker consumed by Examon. Collected metrics include coolant and water temperatures and flow, power consumption, heat dissipation, mPUE (energy-efficiency ratio), pump status/RPM, CPU temperatures, and active/fixed errors and warnings. A FastAPI mock server generates dummy telemetry when a live SmartPod is unavailable.
+
+- Language: Python 3.12 (with a bundled HTML copy of the Submer SmartPod on-prem API reference)
+- Dependency management: Poetry
+- Key libraries: FastAPI, Uvicorn, requests, paho-mqtt
+- Author: Mohsen Seyedkazemi Ardebili
+
+## Files
+
+- [README](https://github.com/MSKazemi/tep/blob/main/README.md): Overview, data flow, installation, and usage.
+- [main.py](https://github.com/MSKazemi/tep/blob/main/main.py): Entry point; collects and publishes telemetry on a 60-second loop.
+- [submer_collector.py](https://github.com/MSKazemi/tep/blob/main/submer_collector.py): Fetches live, average, and configuration data from the Submer API.
+- [examon_collector.py](https://github.com/MSKazemi/tep/blob/main/examon_collector.py): Converts Submer JSON into the Examon data model (MQTT topics).
+- [examon_publisher.py](https://github.com/MSKazemi/tep/blob/main/examon_publisher.py): Publishes the Examon-formatted metrics to an MQTT broker.
+- [data_gen.py](https://github.com/MSKazemi/tep/blob/main/data_gen.py): FastAPI mock server that generates dummy Submer telemetry for testing.
