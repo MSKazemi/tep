@@ -1,70 +1,96 @@
-# TEP
+# TEP — Submer to Examon Telemetry Bridge
 
-## Description
+A small Python service that collects immersion-cooling telemetry from a
+[Submer](https://submer.com/) SmartPod on-prem RESTful API and publishes it to
+the [Examon](https://github.com/EEESlab/examon) monitoring system over MQTT.
 
-In this Python project we provided scripts to collect data from the Submer API endpoints and publish it to Examon monitoring system. The project runs continuously, collecting live, average, and configuration data at regular intervals.
+The service runs continuously, polling the Submer SmartPod for **live**,
+**average**, and **configuration** data at regular intervals and forwarding each
+metric to Examon as MQTT topics.
+
+## What it does
+
+- **Collects** SmartPod immersion-cooling metrics from the Submer on-prem REST
+  API — coolant/water temperatures and flow, power consumption, heat
+  dissipation, mPUE (energy-efficiency ratio), pump status/RPM, CPU
+  temperatures, and active/fixed errors and warnings.
+- **Transforms** the JSON payload into the Examon data model, mapping each
+  measurement to a hierarchical MQTT topic under `org/tep/submer/...`.
+- **Publishes** the transformed metrics to an MQTT broker consumed by Examon.
+
+Because a live Submer SmartPod is not always available, the project also ships a
+FastAPI mock server (`data_gen.py`) that generates realistic dummy telemetry for
+local testing.
+
+## Data flow
+
+```
+Submer SmartPod REST API  ──►  submer_collector.py  ──►  examon_collector.py  ──►  examon_publisher.py  ──►  MQTT broker ──► Examon
+   (or data_gen.py mock)         (fetch live/avg/cfg)     (JSON → Examon model)      (paho-mqtt publish)
+```
 
 ## Requirements
 
 - Python 3.12
-- Poetry
+- [Poetry](https://python-poetry.org/)
+- An MQTT broker reachable by `examon_publisher.py`
 
 ## Installation
 
-1. Clone the repository:
-    ```sh
-    git clone <repository-url>
-    cd tep
-    ```
-
-2. Install dependencies using Poetry:
-    ```sh
-    poetry install
-    ```
+```sh
+git clone https://github.com/MSKazemi/tep.git
+cd tep
+poetry install
+```
 
 ## Usage
 
+Start the FastAPI mock Submer API (optional, for local testing):
 
-To run the project, execute the following command:
 ```sh
 poetry run python data_gen.py
 ```
+
+Run the collector/publisher loop:
 
 ```sh
 poetry run python main.py
 ```
 
-The script will continuously collect data from the Submer API and publish it to Examon every 60 seconds.
+`main.py` collects live, average, and configuration data from the Submer API and
+publishes the live data to the MQTT broker every 60 seconds.
 
-## Project Structure
+## Project structure
 
 ```
 .
-├── __init__.py
-├── data_gen.py
-├── examon_collector.py
-├── examon_publisher.py
-├── main.py
+├── main.py               # Entry point: collect and publish on a loop
+├── submer_collector.py   # Fetch live / average / configuration data from the Submer API
+├── examon_collector.py   # Convert Submer JSON into the Examon data model (MQTT topics)
+├── examon_publisher.py   # Publish the Examon-formatted metrics to an MQTT broker
+├── data_gen.py           # FastAPI mock server that generates dummy Submer telemetry
+├── pyproject.toml        # Poetry project and dependencies
 ├── poetry.lock
-├── pyproject.toml
-├── README.md
-├── submer_collector.py
 └── tests/
-    └── __init__.py
 ```
-
-## Modules
-
-- **main.py**: Entry point of the application. Collects data and publishes it at regular intervals.
-- **submer_collector.py**: Contains functions to collect live, average, and configuration data from the Submer API.
-- **examon_collector.py**: (Placeholder for future use)
-- **examon_publisher.py**: Contains functions to publish data to Examon.
-- **data_gen.py**: Since the Submer API is not available, this script generates dummy data for testing purposes.
 
 ## Configuration
 
-The project uses Poetry for dependency management. Ensure you have Poetry installed before running the project.
+- **Submer API endpoint** — `submer_collector.py` targets
+  `http://127.0.0.1:8000` by default (the address of the `data_gen.py` mock).
+  Point it at a real SmartPod to collect live data.
+- **MQTT broker** — configure the broker host, port, and credentials in
+  `examon_publisher.py`.
+
+## Key concepts
+
+- **Submer SmartPod** — an immersion (liquid) cooling unit for data-center and
+  HPC hardware; it exposes an on-prem RESTful API for telemetry.
+- **Examon** — an open monitoring framework for HPC systems and data centers
+  that ingests metrics over MQTT.
+- **mPUE** — a Submer-reported energy-efficiency ratio included in the telemetry.
 
 ## License
 
-This project is licensed under the MIT License.
+The project header declares the MIT License. No `LICENSE` file is currently
+included in the repository.
