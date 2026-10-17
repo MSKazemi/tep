@@ -94,3 +94,9 @@ publishes the live data to the MQTT broker every 60 seconds.
 
 The project header declares the MIT License. No `LICENSE` file is currently
 included in the repository.
+
+<!-- legal-notice: start -->
+### Legal notice and responsible use
+
+The materials in this repository are made available without warranties to the extent permitted by applicable law. **Please read the [Disclaimer and Responsible-Use Notice](DISCLAIMER.md)** before relying on or deploying them. This notice does not change any existing software license or limit rights that cannot legally be waived.
+<!-- legal-notice: end -->
